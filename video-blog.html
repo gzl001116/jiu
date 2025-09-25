@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>我的视频博客</title>
     <style>
         body {
@@ -129,6 +130,148 @@
             .blog-content {
                 grid-template-columns: 1fr;
             }
+=======
+    <title>视频博客 - DPlayer演示</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .meta {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .blog-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .blog-content h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ecc94b;
+            padding-bottom: 10px;
+        }
+        
+        .blog-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+        
+        .video-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .video-section h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        #dplayer {
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 10px;
+            color: #4a5568;
+        }
+        
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .instructions h3 {
+            margin-top: 0;
+            color: #856404;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            #dplayer {
+                height: 300px;
+            }
+            
+>>>>>>> 2ed1e6ea45b66f232fc077dfed168b404eb76844
             h1 {
                 font-size: 2rem;
             }
@@ -138,6 +281,7 @@
 <body>
     <div class="container">
         <header>
+<<<<<<< HEAD
             <h1>我的视频博客</h1>
             <div class="subtitle">记录生活中的美好时刻</div>
         </header>
@@ -272,6 +416,99 @@
                     posterImage: ""
                 }
             });
+=======
+            <h1>视频博客演示</h1>
+            <div class="meta">
+                <span>发布于 2023年10月1日</span> | 
+                <span>作者: DPlayer</span> | 
+                <span>分类: 技术</span>
+            </div>
+        </header>
+        
+        <div class="instructions">
+            <h3>如何查看此页面</h3>
+            <ol>
+                <li>如果你在本地查看此文件，某些功能可能无法正常工作</li>
+                <li>请使用本地服务器打开此文件，例如:
+                    <ul>
+                        <li>VS Code Live Server 扩展</li>
+                        <li>Python: <code>python -m http.server 8000</code></li>
+                        <li>Node.js: <code>npx serve</code></li>
+                    </ul>
+                </li>
+                <li>然后在浏览器中访问 <code>http://localhost:8000/video-blog.html</code></li>
+            </ol>
+        </div>
+        
+        <section class="blog-content">
+            <h2>关于DPlayer视频播放器</h2>
+            <p>
+                DPlayer是一个现代化的HTML5视频播放器，具有弹幕功能。它支持多种视频格式，包括MP4、HLS和FLV，并提供丰富的自定义选项。
+                这使得DPlayer成为在网页中嵌入视频的理想选择，特别是在需要弹幕互动的场景中。
+            </p>
+            
+            <p>
+                弹幕（Bullet Screen）是一种将评论以滚动文字形式叠加在视频上的功能，最初在日本的Niconico动画网站上流行。
+                通过DPlayer，我们可以轻松地在自己的网站上实现这一功能，为用户提供更丰富的视频观看体验。
+            </p>
+            
+            <p>
+                除了基本的视频播放功能外，DPlayer还支持多种高级特性，如截图、画中画模式、多种字幕格式、清晰度切换等。
+                这些功能使得DPlayer不仅是一个简单的视频播放器，更是一个功能齐全的视频解决方案。
+            </p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <h3>弹幕支持</h3>
+                    <p>支持实时弹幕和历史弹幕，可自定义弹幕样式和行为</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>多种格式</h3>
+                    <p>支持MP4、HLS、FLV等多种视频格式，满足不同需求</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>响应式设计</h3>
+                    <p>适配各种屏幕尺寸，从手机到桌面显示器都能完美显示</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="video-section">
+            <h2>视频演示</h2>
+            <div id="dplayer"></div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2023 视频博客演示. 使用 DPlayer 播放器.</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js"></script>
+    <script>
+        const dp = new DPlayer({
+            container: document.getElementById('dplayer'),
+            autoplay: false,
+            theme: '#667eea',
+            loop: false,
+            lang: 'zh-cn',
+            screenshot: true,
+            hotkey: true,
+            preload: 'auto',
+            volume: 0.7,
+            mutex: true,
+            video: {
+                url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
+                pic: 'https://avatars.githubusercontent.com/u/16400127?v=4',
+                type: 'auto'
+            },
+            danmaku: {
+                id: 'demo',
+                api: 'https://api.prprpr.me/dplayer/',
+                user: 'DIYgod'
+            }
+>>>>>>> 2ed1e6ea45b66f232fc077dfed168b404eb76844
         });
     </script>
 </body>

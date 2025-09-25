@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高级视频博客 - 使用Fluid Player</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            color: white;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .vlog-content {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        .vlog-header {
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+        .vlog-title {
+            font-size: 1.8em;
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .vlog-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .player-container {
+            position: relative;
+            padding: 20px;
+            background: #000;
+        }
+        .fluid_player_wrapper {
+            width: 100%;
+        }
+        .vlog-description {
+            padding: 20px;
+            line-height: 1.6;
+            color: #444;
+        }
+        .vlog-description p {
+            margin: 0 0 15px 0;
+        }
+        .chapters {
+            padding: 0 20px 20px 20px;
+        }
+        .chapters h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .chapter-list {
+            list-style: none;
+            padding: 0;
+        }
+        .chapter-list li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .chapter-list li:hover {
+            background: #f5f5f5;
+        }
+        .chapter-list li strong {
+            color: #007bff;
+        }
+        footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .vlog-title {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>我的视频博客</h1>
+            <div class="subtitle">使用 Fluid Player 制作的专业视频博客</div>
+        </header>
+
+        <main>
+            <article class="vlog-content">
+                <div class="vlog-header">
+                    <h2 class="vlog-title">探索城市中的隐秘美景</h2>
+                    <div class="vlog-meta">
+                        <span>发布于 2023年6月15日</span>
+                        <span>时长: 12:45</span>
+                        <span>浏览: 1,234</span>
+                    </div>
+                </div>
+
+                <div class="player-container">
+                    <div class="fluid_player_wrapper">
+                        <video id="main-vlog-video" controls>
+                            <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                            您的浏览器不支持视频标签。
+                        </video>
+                    </div>
+                </div>
+
+                <div class="vlog-description">
+                    <p>在这期视频中，我将带大家探索这座城市中一些不为人知的美丽角落。这些地方远离喧嚣，却拥有令人惊叹的景色和独特的氛围。</p>
+                    <p>从古老的建筑到现代艺术装置，从安静的公园到充满活力的街头，每一个地方都有自己的故事。希望通过这个视频，能让大家以全新的眼光看待我们生活的城市。</p>
+                    <p>如果你喜欢这个视频，请点赞并订阅我的频道，我会定期更新更多关于城市探索的内容！</p>
+                </div>
+
+                <div class="chapters">
+                    <h3>章节列表</h3>
+                    <ul class="chapter-list" id="chapters-list">
+                        <li data-time="0">
+                            <strong>00:00</strong> - 开场介绍
+                        </li>
+                        <li data-time="60">
+                            <strong>01:00</strong> - 历史悠久的老城区
+                        </li>
+                        <li data-time="180">
+                            <strong>03:00</strong> - 现代艺术中心
+                        </li>
+                        <li data-time="360">
+                            <strong>06:00</strong> - 城市中的秘密花园
+                        </li>
+                        <li data-time="540">
+                            <strong>09:00</strong> - 夕阳下的河滨步道
+                        </li>
+                        <li data-time="690">
+                            <strong>11:30</strong> - 结束语和下期预告
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 我的视频博客. 使用 Fluid Player 构建.</p>
+        </footer>
+    </div>
+
+    <!-- 引入Fluid Player库 -->
+    <link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css">
+    <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+    
+    <script>
+        // 初始化Fluid Player
+        document.addEventListener('DOMContentLoaded', function() {
+            var player = fluidPlayer('main-vlog-video', {
+                layoutControls: {
+                    primaryColor: "#3498db",
+                    playButtonShowing: true,
+                    fillToContainer: true,
+                    posterImage: "", // 可以设置封面图片
+                    autoPlay: false,
+                    mute: false,
+                    playerInitCallback: function() {
+                        console.log('Fluid Player 已初始化');
+                    }
+                },
+                vastOptions: {
+                    adList: [
+                        // 可以在这里添加广告
+                    ]
+                }
+            });
+
+            // 为章节添加点击事件
+            var chapters = document.querySelectorAll('#chapters-list li');
+            chapters.forEach(function(chapter) {
+                chapter.addEventListener('click', function() {
+                    var time = this.getAttribute('data-time');
+                    player.skipTo(time);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
