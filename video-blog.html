@@ -250,30 +250,54 @@
     <script>
         // 初始化Fluid Player
         document.addEventListener('DOMContentLoaded', function() {
-            fluidPlayer('video-1', {
+            var player1 = fluidPlayer('video-1', {
                 layoutControls: {
                     primaryColor: "#009dff",
                     playButtonShowing: true,
                     fillToContainer: true,
-                    posterImage: ""
+                    posterImage: "",
+                    autoPlay: false,
+                    mute: false,
+                    // 确保控制栏显示
+                    controlBar: {
+                        autoHide: false
+                    },
+                    // 启用播放速率控制
+                    playbackRateEnabled: true
                 }
             });
 
-            fluidPlayer('video-2', {
+            var player2 = fluidPlayer('video-2', {
                 layoutControls: {
                     primaryColor: "#ff0000",
                     playButtonShowing: true,
                     fillToContainer: true,
-                    posterImage: ""
+                    posterImage: "",
+                    autoPlay: false,
+                    mute: false,
+                    // 确保控制栏显示
+                    controlBar: {
+                        autoHide: false
+                    },
+                    // 启用播放速率控制
+                    playbackRateEnabled: true
                 }
             });
 
-            fluidPlayer('video-3', {
+            var player3 = fluidPlayer('video-3', {
                 layoutControls: {
                     primaryColor: "#28a745",
                     playButtonShowing: true,
                     fillToContainer: true,
-                    posterImage: ""
+                    posterImage: "",
+                    autoPlay: false,
+                    mute: false,
+                    // 确保控制栏显示
+                    controlBar: {
+                        autoHide: false
+                    },
+                    // 启用播放速率控制
+                    playbackRateEnabled: true
                 }
             });
             
