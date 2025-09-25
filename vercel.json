@@ -8,6 +8,10 @@
   ],
   "routes": [
     {
+      "src": "/$",
+      "dest": "/video-blog.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1"
     }
