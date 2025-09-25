@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DPlayer - 开源视频播放器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dist/DPlayer.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f7f7f7;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .player-container {
+            margin: 20px 0;
+        }
+        #dplayer {
+            width: 100%;
+            height: 500px;
+        }
+        .info {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .info h2 {
+            margin-top: 0;
+        }
+        .info ul {
+            padding-left: 20px;
+        }
+        .info li {
+            margin-bottom: 10px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DPlayer 视频播放器演示</h1>
+        
+        <div class="player-container">
+            <div id="dplayer"></div>
+        </div>
+        
+        <div class="info">
+            <h2>关于 DPlayer</h2>
+            <p>DPlayer 是一个现代化的 HTML5 视频播放器，支持以下功能：</p>
+            <ul>
+                <li>弹幕支持</li>
+                <li>多种视频格式支持 (MP4, HLS, FLV 等)</li>
+                <li>响应式设计</li>
+                <li>键盘快捷键</li>
+                <li>多种字幕格式支持</li>
+                <li>清晰度切换</li>
+                <li>截图功能</li>
+                <li>画中画模式</li>
+                <li>倍速播放</li>
+            </ul>
+            
+            <h2>使用方法</h2>
+            <p>在您的项目中引入 DPlayer：</p>
+            <pre><code>// 安装
+npm install dplayer
+
+// 使用
+import DPlayer from 'dplayer';
+
+const dp = new DPlayer({
+    container: document.getElementById('dplayer'),
+    video: {
+        url: 'demo.mp4',
+        pic: 'demo.jpg',
+        thumbnails: 'thumbnails.jpg'
+    }
+});</code></pre>
+        </div>
+        
+        <footer>
+            <p>DPlayer &copy; 2023 | 开源项目 | <a href="https://github.com/MoePlayer/DPlayer" target="_blank">GitHub 仓库</a></p>
+        </footer>
+    </div>
+
+    <script src="dist/DPlayer.min.js"></script>
+    <script>
+        const dp = new DPlayer({
+            container: document.getElementById('dplayer'),
+            autoplay: false,
+            theme: '#FADFA3',
+            loop: true,
+            lang: 'zh-cn',
+            screenshot: true,
+            hotkey: true,
+            preload: 'auto',
+            volume: 0.7,
+            mutex: true,
+            video: {
+                url: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
+                pic: 'https://avatars.githubusercontent.com/u/16400127?v=4',
+                type: 'auto'
+            },
+            danmaku: {
+                id: 'demo',
+                api: 'https://api.prprpr.me/dplayer/',
+                user: 'DIYgod'
+            }
+        });
+    </script>
+</body>
+</html>
