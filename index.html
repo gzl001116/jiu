@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluid Player 视频博客</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .btn {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+        .features {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem;
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+        }
+        .feature h3 {
+            margin-top: 0;
+        }
+        footer {
+            margin-top: 2rem;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fluid Player 视频博客</h1>
+        <p>使用 Fluid Player 构建的专业视频博客网站</p>
+        
+        <div>
+            <a href="video-blog.html" class="btn">进入视频博客</a>
+            <a href="my-video-player.html" class="btn">查看播放器演示</a>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>高质量播放</h3>
+                <p>Fluid Player 提供流畅的视频播放体验</p>
+            </div>
+            <div class="feature">
+                <h3>响应式设计</h3>
+                <p>适配各种设备，随时随地观看</p>
+            </div>
+            <div class="feature">
+                <h3>现代化界面</h3>
+                <p>简洁美观的设计，提升用户体验</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2023 Fluid Player 视频博客. 使用 Vercel 部署.</p>
+        </footer>
+    </div>
+</body>
+</html>

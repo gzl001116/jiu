@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的视频博客</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .blog-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        .videos-section h2, .sidebar h2 {
+            color: #444;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .video-post {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .video-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        .video-container {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background: #000;
+        }
+        .fluid_player_wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .post-content {
+            padding: 20px;
+        }
+        .post-title {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.5rem;
+        }
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .post-description {
+            line-height: 1.6;
+            color: #555;
+        }
+        .sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            align-self: start;
+            position: sticky;
+            top: 20px;
+        }
+        .about-section, .popular-videos {
+            margin-bottom: 30px;
+        }
+        .about-content, .popular-content {
+            line-height: 1.6;
+            color: #555;
+        }
+        .popular-content ul {
+            padding-left: 20px;
+        }
+        .popular-content li {
+            margin-bottom: 10px;
+        }
+        .popular-content a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .popular-content a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 30px;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+        @media (max-width: 768px) {
+            .blog-content {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>我的视频博客</h1>
+            <div class="subtitle">记录生活中的美好时刻</div>
+        </header>
+
+        <div class="blog-content">
+            <main class="videos-section">
+                <h2>最新视频</h2>
+                
+                <article class="video-post">
+                    <div class="video-container">
+                        <div class="fluid_player_wrapper">
+                            <video id="video-1" controls>
+                                <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                                您的浏览器不支持视频标签。
+                            </video>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <h3 class="post-title">探索自然之美</h3>
+                        <div class="post-meta">
+                            <span>发布于 2023年5月1日</span>
+                            <span>时长: 5:30</span>
+                        </div>
+                        <div class="post-description">
+                            <p>今天我来到了附近的自然保护区，记录了美丽的风景和野生动物。这里有清澈的溪流、茂密的森林和各种各样的鸟类。大自然总是能带给我们无尽的惊喜和宁静。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="video-post">
+                    <div class="video-container">
+                        <div class="fluid_player_wrapper">
+                            <video id="video-2" controls>
+                                <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                                您的浏览器不支持视频标签。
+                            </video>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <h3 class="post-title">城市漫步</h3>
+                        <div class="post-meta">
+                            <span>发布于 2023年4月15日</span>
+                            <span>时长: 7:45</span>
+                        </div>
+                        <div class="post-description">
+                            <p>在这个周末，我决定探索市中心的新咖啡馆和艺术画廊。城市总是有新的发现，让我们一起去看看吧！从街头艺术到精品店，每一个角落都充满了惊喜。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="video-post">
+                    <div class="video-container">
+                        <div class="fluid_player_wrapper">
+                            <video id="video-3" controls>
+                                <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                                您的浏览器不支持视频标签。
+                            </video>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <h3 class="post-title">美食制作日记</h3>
+                        <div class="post-meta">
+                            <span>发布于 2023年3月22日</span>
+                            <span>时长: 12:15</span>
+                        </div>
+                        <div class="post-description">
+                            <p>今天我尝试制作了一道复杂的法式甜点。从准备食材到最终的装饰，整个过程既充满挑战又非常有趣。让我们一起看看这道甜点是如何诞生的吧！</p>
+                        </div>
+                    </div>
+                </article>
+            </main>
+
+            <aside class="sidebar">
+                <div class="about-section">
+                    <h2>关于我</h2>
+                    <div class="about-content">
+                        <p>欢迎来到我的视频博客！我是一个热爱旅行、美食和摄影的创作者。在这里，我会分享我的生活点滴和发现的美好事物。</p>
+                        <p>希望通过我的视频，能给你带来灵感和快乐！</p>
+                    </div>
+                </div>
+
+                <div class="popular-videos">
+                    <h2>热门视频</h2>
+                    <div class="popular-content">
+                        <ul>
+                            <li><a href="#">海边日出的美丽瞬间</a></li>
+                            <li><a href="#">山间徒步全记录</a></li>
+                            <li><a href="#">自制美食教程合集</a></li>
+                            <li><a href="#">城市夜景航拍</a></li>
+                            <li><a href="#">季节变换的自然风光</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer>
+            <p>&copy; 2023 我的视频博客. 使用 Fluid Player 构建.</p>
+        </footer>
+    </div>
+
+    <!-- 引入Fluid Player库 -->
+    <link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css">
+    <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+    
+    <script>
+        // 初始化Fluid Player
+        document.addEventListener('DOMContentLoaded', function() {
+            fluidPlayer('video-1', {
+                layoutControls: {
+                    primaryColor: "#009dff",
+                    playButtonShowing: true,
+                    fillToContainer: true,
+                    posterImage: ""
+                }
+            });
+
+            fluidPlayer('video-2', {
+                layoutControls: {
+                    primaryColor: "#ff0000",
+                    playButtonShowing: true,
+                    fillToContainer: true,
+                    posterImage: ""
+                }
+            });
+
+            fluidPlayer('video-3', {
+                layoutControls: {
+                    primaryColor: "#28a745",
+                    playButtonShowing: true,
+                    fillToContainer: true,
+                    posterImage: ""
+                }
+            });
+        });
+    </script>
+</body>
+</html>
