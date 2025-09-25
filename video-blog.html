@@ -133,6 +133,10 @@
                 font-size: 2rem;
             }
         }
+        .duration-loading {
+            color: #999;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -159,7 +163,7 @@
                         <h3 class="post-title">探索自然之美</h3>
                         <div class="post-meta">
                             <span>发布于 2023年5月1日</span>
-                            <span>时长: 5:30</span>
+                            <span class="video-duration" id="duration-1"><span class="duration-loading">正在加载时长...</span></span>
                         </div>
                         <div class="post-description">
                             <p>今天我来到了附近的自然保护区，记录了美丽的风景和野生动物。这里有清澈的溪流、茂密的森林和各种各样的鸟类。大自然总是能带给我们无尽的惊喜和宁静。</p>
@@ -180,7 +184,7 @@
                         <h3 class="post-title">城市漫步</h3>
                         <div class="post-meta">
                             <span>发布于 2023年4月15日</span>
-                            <span>时长: 7:45</span>
+                            <span class="video-duration" id="duration-2"><span class="duration-loading">正在加载时长...</span></span>
                         </div>
                         <div class="post-description">
                             <p>在这个周末，我决定探索市中心的新咖啡馆和艺术画廊。城市总是有新的发现，让我们一起去看看吧！从街头艺术到精品店，每一个角落都充满了惊喜。</p>
@@ -201,7 +205,7 @@
                         <h3 class="post-title">美食制作日记</h3>
                         <div class="post-meta">
                             <span>发布于 2023年3月22日</span>
-                            <span>时长: 12:15</span>
+                            <span class="video-duration" id="duration-3"><span class="duration-loading">正在加载时长...</span></span>
                         </div>
                         <div class="post-description">
                             <p>今天我尝试制作了一道复杂的法式甜点。从准备食材到最终的装饰，整个过程既充满挑战又非常有趣。让我们一起看看这道甜点是如何诞生的吧！</p>
@@ -272,6 +276,43 @@
                     posterImage: ""
                 }
             });
+            
+            // 获取视频时长
+            function formatTime(seconds) {
+                const hours = Math.floor(seconds / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                const secs = Math.floor(seconds % 60);
+                
+                if (hours > 0) {
+                    return `${hours}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                } else {
+                    return `${minutes}:${secs.toString().padStart(2, '0')}`;
+                }
+            }
+            
+            // 为每个视频获取时长
+            function getVideoDuration(videoId, durationId) {
+                const video = document.getElementById(videoId);
+                const durationElement = document.getElementById(durationId);
+                
+                video.addEventListener('loadedmetadata', function() {
+                    if (video.duration && !isNaN(video.duration)) {
+                        durationElement.textContent = '时长: ' + formatTime(video.duration);
+                    } else {
+                        durationElement.textContent = '时长: 未知';
+                    }
+                });
+                
+                // 错误处理
+                video.addEventListener('error', function() {
+                    durationElement.innerHTML = '<span style="color: red;">时长加载失败</span>';
+                });
+            }
+            
+            // 获取所有视频时长
+            getVideoDuration('video-1', 'duration-1');
+            getVideoDuration('video-2', 'duration-2');
+            getVideoDuration('video-3', 'duration-3');
         });
     </script>
 </body>
