@@ -383,12 +383,12 @@
                 debugDiv.textContent = playerId + ': ' + message;
                 document.body.appendChild(debugDiv);
                 
-                // 5秒后自动移除
+                // 10秒后自动移除
                 setTimeout(() => {
                     if (debugDiv.parentNode) {
                         debugDiv.parentNode.removeChild(debugDiv);
                     }
-                }, 5000);
+                }, 10000);
             }
             
             // 显示地理位置信息
@@ -432,17 +432,24 @@
                     adList: [
                         {
                             roll: 'preRoll',
-                            vastTag: 'https://s.magsrv.com/v1/vast.php?idzone=5732960'
+                            vastTag: 'https://s.magsrv.com/v1/vast.php?idzone=5732960',
+                            fallbackAdList: [
+                                {
+                                    roll: 'preRoll',
+                                    vastTag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpost&cmsid=496&vid=short_onecue&correlator='
+                                }
+                            ]
                         }
                     ],
                     adText: "广告",
                     skipButtonCaption: '跳过广告 [seconds]',
                     skipButtonClickCaption: '跳过广告',
-                    vastTimeout: 5000
+                    vastTimeout: 10000
                 },
                 events: {
                     onPlay: function() {
                         console.log('Player 1: 视频开始播放');
+                        createAdDebugInfo('Player 1', '视频开始播放');
                     },
                     onPause: function() {
                         console.log('Player 1: 视频暂停');
@@ -457,9 +464,11 @@
                     },
                     onAdPause: function() {
                         console.log('Player 1: 广告暂停');
+                        createAdDebugInfo('Player 1', '广告暂停');
                     },
                     onAdResume: function() {
                         console.log('Player 1: 广告继续播放');
+                        createAdDebugInfo('Player 1', '广告继续播放');
                     },
                     onAdComplete: function() {
                         console.log('Player 1: 广告播放完成');
@@ -468,6 +477,10 @@
                     onAdError: function(e) {
                         console.log('Player 1: 广告错误', e);
                         createAdDebugInfo('Player 1', '广告错误: ' + e);
+                    },
+                    onNoAd: function() {
+                        console.log('Player 1: 无广告可播放');
+                        createAdDebugInfo('Player 1', '无广告可播放');
                     }
                 }
             });
@@ -491,17 +504,24 @@
                     adList: [
                         {
                             roll: 'preRoll',
-                            vastTag: 'https://s.magsrv.com/v1/vast.php?idzone=5732960'
+                            vastTag: 'https://s.magsrv.com/v1/vast.php?idzone=5732960',
+                            fallbackAdList: [
+                                {
+                                    roll: 'preRoll',
+                                    vastTag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpost&cmsid=496&vid=short_onecue&correlator='
+                                }
+                            ]
                         }
                     ],
                     adText: "广告",
                     skipButtonCaption: '跳过广告 [seconds]',
                     skipButtonClickCaption: '跳过广告',
-                    vastTimeout: 5000
+                    vastTimeout: 10000
                 },
                 events: {
                     onPlay: function() {
                         console.log('Player 2: 视频开始播放');
+                        createAdDebugInfo('Player 2', '视频开始播放');
                     },
                     onPause: function() {
                         console.log('Player 2: 视频暂停');
@@ -516,9 +536,11 @@
                     },
                     onAdPause: function() {
                         console.log('Player 2: 广告暂停');
+                        createAdDebugInfo('Player 2', '广告暂停');
                     },
                     onAdResume: function() {
                         console.log('Player 2: 广告继续播放');
+                        createAdDebugInfo('Player 2', '广告继续播放');
                     },
                     onAdComplete: function() {
                         console.log('Player 2: 广告播放完成');
@@ -527,6 +549,10 @@
                     onAdError: function(e) {
                         console.log('Player 2: 广告错误', e);
                         createAdDebugInfo('Player 2', '广告错误: ' + e);
+                    },
+                    onNoAd: function() {
+                        console.log('Player 2: 无广告可播放');
+                        createAdDebugInfo('Player 2', '无广告可播放');
                     }
                 }
             });
@@ -550,17 +576,24 @@
                     adList: [
                         {
                             roll: 'preRoll',
-                            vastTag: 'https://s.magsrv.com/v1/vast.php?idzone=5732960'
+                            vastTag: 'https://s.magsrv.com/v1/vast.php?idzone=5732960',
+                            fallbackAdList: [
+                                {
+                                    roll: 'preRoll',
+                                    vastTag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpost&cmsid=496&vid=short_onecue&correlator='
+                                }
+                            ]
                         }
                     ],
                     adText: "广告",
                     skipButtonCaption: '跳过广告 [seconds]',
                     skipButtonClickCaption: '跳过广告',
-                    vastTimeout: 5000
+                    vastTimeout: 10000
                 },
                 events: {
                     onPlay: function() {
                         console.log('Player 3: 视频开始播放');
+                        createAdDebugInfo('Player 3', '视频开始播放');
                     },
                     onPause: function() {
                         console.log('Player 3: 视频暂停');
@@ -575,9 +608,11 @@
                     },
                     onAdPause: function() {
                         console.log('Player 3: 广告暂停');
+                        createAdDebugInfo('Player 3', '广告暂停');
                     },
                     onAdResume: function() {
                         console.log('Player 3: 广告继续播放');
+                        createAdDebugInfo('Player 3', '广告继续播放');
                     },
                     onAdComplete: function() {
                         console.log('Player 3: 广告播放完成');
@@ -586,6 +621,10 @@
                     onAdError: function(e) {
                         console.log('Player 3: 广告错误', e);
                         createAdDebugInfo('Player 3', '广告错误: ' + e);
+                    },
+                    onNoAd: function() {
+                        console.log('Player 3: 无广告可播放');
+                        createAdDebugInfo('Player 3', '无广告可播放');
                     }
                 }
             });
