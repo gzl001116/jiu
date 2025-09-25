@@ -132,7 +132,74 @@
             h1 {
                 font-size: 2rem;
             }
+            .container {
+                padding: 10px;
+            }
+            header {
+                padding: 1rem 0;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .video-post {
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .post-content {
+                padding: 15px;
+            }
+            .post-title {
+                font-size: 1.3rem;
+            }
+            .post-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .sidebar {
+                border-radius: 5px;
+                padding: 15px;
+                position: static;
+            }
+            .video-container {
+                padding-top: 56.25%;
+            }
+            footer {
+                padding: 20px 0;
+                margin-top: 20px;
+            }
         }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            .post-title {
+                font-size: 1.2rem;
+            }
+            .container {
+                padding: 5px;
+            }
+            header {
+                margin-bottom: 15px;
+            }
+            .video-post {
+                margin-bottom: 15px;
+            }
+            .post-content {
+                padding: 10px;
+            }
+            .sidebar {
+                padding: 10px;
+                margin-bottom: 15px;
+            }
+            footer {
+                margin-top: 15px;
+                padding: 15px 0;
+            }
+        }
+        
         .duration-loading {
             color: #999;
             font-style: italic;
@@ -160,6 +227,18 @@
             z-index: 9999;
             font-size: 12px;
             max-width: 300px;
+        }
+        
+        /* Fluid Player移动端优化 */
+        @media (max-width: 768px) {
+            .fluid_player_wrapper {
+                position: relative;
+                padding-top: 56.25%;
+            }
+            
+            .fluid_video_wrapper {
+                border-radius: 5px;
+            }
         }
     </style>
 </head>
