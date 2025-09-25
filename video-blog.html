@@ -251,6 +251,17 @@
                 height: 100%;
             }
         }
+        
+        /* 修复控制栏显示问题 */
+        .fluid_video_wrapper video {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .fluid_video_wrapper {
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
@@ -412,7 +423,9 @@
                     mute: false,
                     // 确保控制栏显示
                     controlBar: {
-                        autoHide: false
+                        autoHide: false,
+                        autoHideTimeout: 3,
+                        animated: true
                     },
                     // 启用播放速率控制
                     playbackRateEnabled: true
@@ -471,7 +484,9 @@
                     mute: false,
                     // 确保控制栏显示
                     controlBar: {
-                        autoHide: false
+                        autoHide: false,
+                        autoHideTimeout: 3,
+                        animated: true
                     },
                     // 启用播放速率控制
                     playbackRateEnabled: true
@@ -530,7 +545,9 @@
                     mute: false,
                     // 确保控制栏显示
                     controlBar: {
-                        autoHide: false
+                        autoHide: false,
+                        autoHideTimeout: 3,
+                        animated: true
                     },
                     // 启用播放速率控制
                     playbackRateEnabled: true
