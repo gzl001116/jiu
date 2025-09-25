@@ -8,7 +8,11 @@
   ],
   "routes": [
     {
+<<<<<<< HEAD
       "src": "/",
+=======
+      "src": "/$",
+>>>>>>> d80b122d0fcf92159235e8f432149182f82b7c98
       "dest": "/video-blog.html"
     },
     {
