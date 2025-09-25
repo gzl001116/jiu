@@ -149,6 +149,18 @@
             font-size: 12px;
             max-width: 300px;
         }
+        .location-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 9999;
+            font-size: 12px;
+            max-width: 300px;
+        }
     </style>
 </head>
 <body>
@@ -277,6 +289,28 @@
                     }
                 }, 5000);
             }
+            
+            // 显示地理位置信息
+            function showLocationInfo() {
+                fetch('http://ip-api.com/json/')
+                    .then(response => response.json())
+                    .then(data => {
+                        const locationDiv = document.createElement('div');
+                        locationDiv.className = 'location-info';
+                        locationDiv.innerHTML = `
+                            <div>位置: ${data.country} (${data.countryCode})</div>
+                            <div>地区: ${data.regionName}</div>
+                            <div>城市: ${data.city}</div>
+                        `;
+                        document.body.appendChild(locationDiv);
+                    })
+                    .catch(error => {
+                        console.log('获取地理位置信息失败:', error);
+                    });
+            }
+            
+            // 显示地理位置信息
+            showLocationInfo();
             
             var player1 = fluidPlayer('video-1', {
                 layoutControls: {
