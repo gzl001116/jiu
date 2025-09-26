@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的视频博客</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        h1 {
+            color: #333;
+        }
+        .video-container {
+            margin-bottom: 30px;
+        }
+        .fluid_player_wrapper {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .video-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #444;
+        }
+        .video-description {
+            color: #666;
+            line-height: 1.5;
+        }
+        .vlog-info {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>我的视频博客</h1>
+            <p>记录生活中的美好时刻</p>
+        </header>
+
+        <main>
+            <div class="video-container">
+                <div class="fluid_player_wrapper">
+                    <video id="vlog-video-1" controls>
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                        您的浏览器不支持视频标签。
+                    </video>
+                </div>
+                <div class="video-title">探索自然之美</div>
+                <div class="video-description">
+                    今天我来到了附近的自然保护区，记录了美丽的风景和野生动物。
+                    这里有清澈的溪流、茂密的森林和各种各样的鸟类。
+                </div>
+                <div class="vlog-info">
+                    <span>发布于 2023年5月1日</span>
+                    <span>时长: 5:30</span>
+                </div>
+            </div>
+
+            <div class="video-container">
+                <div class="fluid_player_wrapper">
+                    <video id="vlog-video-2" controls>
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                        您的浏览器不支持视频标签。
+                    </video>
+                </div>
+                <div class="video-title">城市漫步</div>
+                <div class="video-description">
+                    在这个周末，我决定探索市中心的新咖啡馆和艺术画廊。
+                    城市总是有新的发现，让我们一起去看看吧！
+                </div>
+                <div class="vlog-info">
+                    <span>发布于 2023年4月15日</span>
+                    <span>时长: 7:45</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 引入Fluid Player库 -->
+    <link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css">
+    <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+    
+    <script>
+        // 初始化Fluid Player
+        document.addEventListener('DOMContentLoaded', function() {
+            fluidPlayer('vlog-video-1', {
+                layoutControls: {
+                    primaryColor: "#009dff",
+                    playButtonShowing: true,
+                    fillToContainer: true,
+                    posterImage: ""
+                }
+            });
+
+            fluidPlayer('vlog-video-2', {
+                layoutControls: {
+                    primaryColor: "#ff0000",
+                    playButtonShowing: true,
+                    fillToContainer: true,
+                    posterImage: ""
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的Fluid Player视频播放器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        h1 {
+            color: #333;
+        }
+        .video-container {
+            margin-bottom: 30px;
+        }
+        .fluid_player_wrapper {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .video-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #444;
+        }
+        .video-description {
+            color: #666;
+            line-height: 1.5;
+        }
+        .player-controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        button {
+            background-color: #009dff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #007fcc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>我的Fluid Player视频播放器</h1>
+            <p>使用Fluid Player构建的专业视频播放器</p>
+        </header>
+
+        <main>
+            <div class="video-container">
+                <div class="fluid_player_wrapper">
+                    <video id="my-video" controls>
+                        <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+                        您的浏览器不支持视频标签。
+                    </video>
+                </div>
+                <div class="video-title">示例视频</div>
+                <div class="video-description">
+                    这是一个使用Fluid Player播放的示例视频。Fluid Player是一个免费的HTML5视频播放器，
+                    具有丰富的功能和可定制性。
+                </div>
+            </div>
+
+            <div class="player-controls">
+                <button onclick="playVideo()">播放</button>
+                <button onclick="pauseVideo()">暂停</button>
+                <button onclick="muteVideo()">静音</button>
+                <button onclick="skipTo(30)">跳转到30秒</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- 引入Fluid Player库 -->
+    <link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css">
+    <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+    
+    <script>
+        // 初始化Fluid Player
+        var player;
+        document.addEventListener('DOMContentLoaded', function() {
+            player = fluidPlayer('my-video', {
+                layoutControls: {
+                    primaryColor: "#009dff",
+                    playButtonShowing: true,
+                    fillToContainer: true,
+                    posterImage: "",
+                    autoPlay: false,
+                    mute: false,
+                    // 显示时间线预览
+                    timelinePreview: {
+                        sprite: '/path/to/sprite.jpg',
+                        spriteRelativePath: true
+                    },
+                    // 启用HTML标题
+                    htmlOnPauseBlock: {
+                        html: '<div class="fp-html-on-pause">视频已暂停</div>',
+                        width: 100,
+                        height: 100
+                    }
+                },
+                // 广告选项
+                vastOptions: {
+                    adList: [
+                        // 可以在这里添加广告
+                    ]
+                }
+            });
+        });
+
+        // 控制函数
+        function playVideo() {
+            player.play();
+        }
+
+        function pauseVideo() {
+            player.pause();
+        }
+
+        function muteVideo() {
+            player.muteToggle('mute');
+        }
+
+        function skipTo(seconds) {
+            player.skipTo(seconds);
+        }
+    </script>
+</body>
+</html>
