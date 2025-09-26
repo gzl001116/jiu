@@ -4,16 +4,12 @@
     {
       "src": "*.html",
       "use": "@vercel/static"
-    },
-    {
-      "src": "demo/**/*.html",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/",
-      "dest": "/video-blog.html"
+      "src": "/$",
+      "dest": "/index.html"
     },
     {
       "src": "/(.*)",
