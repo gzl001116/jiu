@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的视频博客</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .blog-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        .videos-section h2, .sidebar h2 {
+            color: #444;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .video-post {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .video-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        .video-container {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background: #000;
+        }
+        .fluid_player_wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .post-content {
+            padding: 20px;
+        }
+        .post-title {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.5rem;
+        }
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .post-description {
+            line-height: 1.6;
+            color: #555;
+        }
+        .sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            align-self: start;
+            position: sticky;
+            top: 20px;
+        }
+        .about-section, .popular-videos {
+            margin-bottom: 30px;
+        }
+        .about-content, .popular-content {
+            line-height: 1.6;
+            color: #555;
+        }
+        .popular-content ul {
+            padding-left: 20px;
+        }
+        .popular-content li {
+            margin-bottom: 10px;
+        }
+        .popular-content a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .popular-content a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 30px;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+        @media (max-width: 768px) {
+            .blog-content {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .container {
+                padding: 10px;
+            }
+            header {
+                padding: 1rem 0;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .video-post {
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .post-content {
+                padding: 15px;
+            }
+            .post-title {
+                font-size: 1.3rem;
+            }
+            .post-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .sidebar {
+                border-radius: 5px;
+                padding: 15px;
+                position: static;
+            }
+            .video-container {
+                padding-top: 56.25%;
+            }
+            footer {
+                padding: 20px 0;
+                margin-top: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            .post-title {
+                font-size: 1.2rem;
+            }
+            .container {
+                padding: 5px;
+            }
+            header {
+                margin-bottom: 15px;
+            }
+            .video-post {
+                margin-bottom: 15px;
+            }
+            .post-content {
+                padding: 10px;
+            }
+            .sidebar {
+                padding: 10px;
+                margin-bottom: 15px;
+            }
+            footer {
+                margin-top: 15px;
+                padding: 15px 0;
+            }
+        }
+        
+        .duration-loading {
+            color: #999;
+            font-style: italic;
+        }
+        .ad-debug {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 9999;
+            font-size: 12px;
+            max-width: 300px;
+        }
+        .location-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 9999;
+            font-size: 12px;
+            max-width: 300px;
+        }
+        
+        /* Fluid Player样式优化 */
+        .fluid_video_wrapper {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .fluid_video_wrapper video {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* 桌面端Fluid Player样式 */
+        @media (min-width: 769px) {
+            .fluid_player_wrapper {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+            
+            .fluid_video_wrapper {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        /* 移动端Fluid Player样式 */
+        @media (max-width: 768px) {
+            .fluid_player_wrapper {
+                position: relative;
+                padding-top: 56.25%;
+            }
+            
+            .fluid_video_wrapper {
+                border-radius: 5px;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>我的视频博客</h1>
+            <div class="subtitle">记录生活中的美好时刻</div>
+        </header>
+
+        <div class="blog-content">
+            <main class="videos-section">
+                <h2>最新视频</h2>
+                
+                <article class="video-post">
+                    <div class="video-container">
+                        <div class="fluid_player_wrapper">
+                            <video id="video-1" controls>
+                                <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                                您的浏览器不支持视频标签。
+                            </video>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <h3 class="post-title">探索自然之美</h3>
+                        <div class="post-meta">
+                            <span>发布于 2023年5月1日</span>
+                            <span class="video-duration" id="duration-1"><span class="duration-loading">正在加载时长...</span></span>
+                        </div>
+                        <div class="post-description">
+                            <p>今天我来到了附近的自然保护区，记录了美丽的风景和野生动物。这里有清澈的溪流、茂密的森林和各种各样的鸟类。大自然总是能带给我们无尽的惊喜和宁静。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="video-post">
+                    <div class="video-container">
+                        <div class="fluid_player_wrapper">
+                            <video id="video-2" controls>
+                                <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4">
+                                您的浏览器不支持视频标签。
+                            </video>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <h3 class="post-title">城市漫步</h3>
+                        <div class="post-meta">
+                            <span>发布于 2023年4月15日</span>
+                            <span class="video-duration" id="duration-2"><span class="duration-loading">正在加载时长...</span></span>
+                        </div>
+                        <div class="post-description">
+                            <p>在这个周末，我决定探索市中心的新咖啡馆和艺术画廊。城市总是有新的发现，让我们一起去看看吧！从街头艺术到精品店，每一个角落都充满了惊喜。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="video-post">
+                    <div class="video-container">
+                        <div class="fluid_player_wrapper">
+                            <video id="video-3" controls>
+                                <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4" type="video/mp4">
+                                您的浏览器不支持视频标签。
+                            </video>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <h3 class="post-title">美食制作日记</h3>
+                        <div class="post-meta">
+                            <span>发布于 2023年3月22日</span>
+                            <span class="video-duration" id="duration-3"><span class="duration-loading">正在加载时长...</span></span>
+                        </div>
+                        <div class="post-description">
+                            <p>今天我尝试制作了一道复杂的法式甜点。从准备食材到最终的装饰，整个过程既充满挑战又非常有趣。让我们一起看看这道甜点是如何诞生的吧！</p>
+                        </div>
+                    </div>
+                </article>
+            </main>
+
+            <aside class="sidebar">
+                <div class="about-section">
+                    <h2>关于我</h2>
+                    <div class="about-content">
+                        <p>欢迎来到我的视频博客！我是一个热爱旅行、美食和摄影的创作者。在这里，我会分享我的生活点滴和发现的美好事物。</p>
+                        <p>希望通过我的视频，能给你带来灵感和快乐！</p>
+                    </div>
+                </div>
+
+                <div class="popular-videos">
+                    <h2>热门视频</h2>
+                    <div class="popular-content">
+                        <ul>
+                            <li><a href="#">海边日出的美丽瞬间</a></li>
+                            <li><a href="#">山间徒步全记录</a></li>
+                            <li><a href="#">自制美食教程合集</a></li>
+                            <li><a href="#">城市夜景航拍</a></li>
+                            <li><a href="#">季节变换的自然风光</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer>
+            <p>&copy; 2023 我的视频博客. 使用 Fluid Player 构建.</p>
+        </footer>
+    </div>
+
+    <!-- 引入Fluid Player库 -->
+    <link rel="stylesheet" href="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.css">
+    <script src="https://cdn.fluidplayer.com/v3/current/fluidplayer.min.js"></script>
+    
+    <script>
+        // 初始化Fluid Player
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加广告调试信息显示
+            function createAdDebugInfo(playerId, message) {
+                const debugDiv = document.createElement('div');
+                debugDiv.className = 'ad-debug';
+                debugDiv.id = 'ad-debug-' + playerId;
+                debugDiv.textContent = playerId + ': ' + message;
+                document.body.appendChild(debugDiv);
+                
+                // 10秒后自动移除
+                setTimeout(() => {
+                    if (debugDiv.parentNode) {
+                        debugDiv.parentNode.removeChild(debugDiv);
+                    }
+                }, 10000);
+            }
+            
+            // 显示地理位置信息
+            function showLocationInfo() {
+                fetch('http://ip-api.com/json/')
+                    .then(response => response.json())
+                    .then(data => {
+                        const locationDiv = document.createElement('div');
+                        locationDiv.className = 'location-info';
+                        locationDiv.innerHTML = `
+                            <div>位置: ${data.country} (${data.countryCode})</div>
+                            <div>地区: ${data.regionName}</div>
+                            <div>城市: ${data.city}</div>
+                        `;
+                        document.body.appendChild(locationDiv);
+                    })
+                    .catch(error => {
+                        console.log('获取地理位置信息失败:', error);
+                    });
+            }
+            
+            // 显示地理位置信息
+            showLocationInfo();
+            
+            var player1 = fluidPlayer('video-1', {
+                layoutControls: {
+                    primaryColor: "#009dff",
+                    playButtonShowing: true,
+                    fillToContainer: true,
+                    posterImage: "",
+                    autoPlay: false,
+                    mute: false,
+                    // 确保控制栏显示
+                    controlBar: {
+                        autoHide: false
+                    },
+                    // 启用播放速率控制
+                    playbackRateEnabled: true
+                },
+                vastOptions: {
+                    adList: [
+                        {
+                            roll: 'preRoll',
+                            vastTag: 'https://s.magsrv.com/v1/vast.php?idzone=5732960',
+                            fallbackAdList: [
+                                {
+                                    roll: 'preRoll',
+                                    vastTag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpost&cmsid=496&vid=short_onecue&correlator='
+                                }
+                            ]
+                        }
+                    ],
+                    adText: "广告",
+                    skipButtonCaption: '跳过广告 [seconds]',
+                    skipButtonClickCaption: '跳过广告',
+                    vastTimeout: 10000
+                },
+                events: {
+                    onPlay: function() {
+                        console.log('Player 1: 视频开始播放');
+                        createAdDebugInfo('Player 1', '视频开始播放');
+                    },
+                    onPause: function() {
+                        console.log('Player 1: 视频暂停');
+                    },
+                    onError: function(e) {
+                        console.log('Player 1: 播放器错误', e);
+                        createAdDebugInfo('Player 1', '播放器错误: ' + e);
+                    },
+                    onAdPlay: function() {
+                        console.log('Player 1: 广告开始播放');
+                        createAdDebugInfo('Player 1', '广告开始播放');
+                    },
+                    onAdPause: function() {
+                        console.log('Player 1: 广告暂停');
+                        createAdDebugInfo('Player 1', '广告暂停');
+                    },
+                    onAdResume: function() {
+                        console.log('Player 1: 广告继续播放');
+                        createAdDebugInfo('Player 1', '广告继续播放');
+                    },
+                    onAdComplete: function() {
+                        console.log('Player 1: 广告播放完成');
+                        createAdDebugInfo('Player 1', '广告播放完成');
+                    },
+                    onAdError: function(e) {
+                        console.log('Player 1: 广告错误', e);
+                        createAdDebugInfo('Player 1', '广告错误: ' + e);
+                    },
+                    onNoAd: function() {
+                        console.log('Player 1: 无广告可播放');
+                        createAdDebugInfo('Player 1', '无广告可播放');
+                    }
+                }
+            });
+
+            var player2 = fluidPlayer('video-2', {
+                layoutControls: {
+                    primaryColor: "#ff0000",
+                    playButtonShowing: true,
+                    fillToContainer: true,
+                    posterImage: "",
+                    autoPlay: false,
+                    mute: false,
+                    // 确保控制栏显示
+                    controlBar: {
+                        autoHide: false
+                    },
+                    // 启用播放速率控制
+                    playbackRateEnabled: true
+                },
+                vastOptions: {
+                    adList: [
+                        {
+                            roll: 'preRoll',
+                            vastTag: 'https://s.magsrv.com/v1/vast.php?idzone=5732960',
+                            fallbackAdList: [
+                                {
+                                    roll: 'preRoll',
+                                    vastTag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpost&cmsid=496&vid=short_onecue&correlator='
+                                }
+                            ]
+                        }
+                    ],
+                    adText: "广告",
+                    skipButtonCaption: '跳过广告 [seconds]',
+                    skipButtonClickCaption: '跳过广告',
+                    vastTimeout: 10000
+                },
+                events: {
+                    onPlay: function() {
+                        console.log('Player 2: 视频开始播放');
+                        createAdDebugInfo('Player 2', '视频开始播放');
+                    },
+                    onPause: function() {
+                        console.log('Player 2: 视频暂停');
+                    },
+                    onError: function(e) {
+                        console.log('Player 2: 播放器错误', e);
+                        createAdDebugInfo('Player 2', '播放器错误: ' + e);
+                    },
+                    onAdPlay: function() {
+                        console.log('Player 2: 广告开始播放');
+                        createAdDebugInfo('Player 2', '广告开始播放');
+                    },
+                    onAdPause: function() {
+                        console.log('Player 2: 广告暂停');
+                        createAdDebugInfo('Player 2', '广告暂停');
+                    },
+                    onAdResume: function() {
+                        console.log('Player 2: 广告继续播放');
+                        createAdDebugInfo('Player 2', '广告继续播放');
+                    },
+                    onAdComplete: function() {
+                        console.log('Player 2: 广告播放完成');
+                        createAdDebugInfo('Player 2', '广告播放完成');
+                    },
+                    onAdError: function(e) {
+                        console.log('Player 2: 广告错误', e);
+                        createAdDebugInfo('Player 2', '广告错误: ' + e);
+                    },
+                    onNoAd: function() {
+                        console.log('Player 2: 无广告可播放');
+                        createAdDebugInfo('Player 2', '无广告可播放');
+                    }
+                }
+            });
+
+            var player3 = fluidPlayer('video-3', {
+                layoutControls: {
+                    primaryColor: "#28a745",
+                    playButtonShowing: true,
+                    fillToContainer: true,
+                    posterImage: "",
+                    autoPlay: false,
+                    mute: false,
+                    // 确保控制栏显示
+                    controlBar: {
+                        autoHide: false
+                    },
+                    // 启用播放速率控制
+                    playbackRateEnabled: true
+                },
+                vastOptions: {
+                    adList: [
+                        {
+                            roll: 'preRoll',
+                            vastTag: 'https://s.magsrv.com/v1/vast.php?idzone=5732960',
+                            fallbackAdList: [
+                                {
+                                    roll: 'preRoll',
+                                    vastTag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpost&cmsid=496&vid=short_onecue&correlator='
+                                }
+                            ]
+                        }
+                    ],
+                    adText: "广告",
+                    skipButtonCaption: '跳过广告 [seconds]',
+                    skipButtonClickCaption: '跳过广告',
+                    vastTimeout: 10000
+                },
+                events: {
+                    onPlay: function() {
+                        console.log('Player 3: 视频开始播放');
+                        createAdDebugInfo('Player 3', '视频开始播放');
+                    },
+                    onPause: function() {
+                        console.log('Player 3: 视频暂停');
+                    },
+                    onError: function(e) {
+                        console.log('Player 3: 播放器错误', e);
+                        createAdDebugInfo('Player 3', '播放器错误: ' + e);
+                    },
+                    onAdPlay: function() {
+                        console.log('Player 3: 广告开始播放');
+                        createAdDebugInfo('Player 3', '广告开始播放');
+                    },
+                    onAdPause: function() {
+                        console.log('Player 3: 广告暂停');
+                        createAdDebugInfo('Player 3', '广告暂停');
+                    },
+                    onAdResume: function() {
+                        console.log('Player 3: 广告继续播放');
+                        createAdDebugInfo('Player 3', '广告继续播放');
+                    },
+                    onAdComplete: function() {
+                        console.log('Player 3: 广告播放完成');
+                        createAdDebugInfo('Player 3', '广告播放完成');
+                    },
+                    onAdError: function(e) {
+                        console.log('Player 3: 广告错误', e);
+                        createAdDebugInfo('Player 3', '广告错误: ' + e);
+                    },
+                    onNoAd: function() {
+                        console.log('Player 3: 无广告可播放');
+                        createAdDebugInfo('Player 3', '无广告可播放');
+                    }
+                }
+            });
+            
+            // 获取视频时长
+            function formatTime(seconds) {
+                const hours = Math.floor(seconds / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                const secs = Math.floor(seconds % 60);
+                
+                if (hours > 0) {
+                    return `${hours}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                } else {
+                    return `${minutes}:${secs.toString().padStart(2, '0')}`;
+                }
+            }
+            
+            // 为每个视频获取时长
+            function getVideoDuration(videoId, durationId) {
+                const video = document.getElementById(videoId);
+                const durationElement = document.getElementById(durationId);
+                
+                video.addEventListener('loadedmetadata', function() {
+                    if (video.duration && !isNaN(video.duration)) {
+                        durationElement.textContent = '时长: ' + formatTime(video.duration);
+                    } else {
+                        durationElement.textContent = '时长: 未知';
+                    }
+                });
+                
+                // 错误处理
+                video.addEventListener('error', function() {
+                    durationElement.innerHTML = '<span style="color: red;">时长加载失败</span>';
+                });
+            }
+            
+            // 获取所有视频时长
+            getVideoDuration('video-1', 'duration-1');
+            getVideoDuration('video-2', 'duration-2');
+            getVideoDuration('video-3', 'duration-3');
+        });
+    </script>
+    
+    <!-- 添加广告代码 -->
+    <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script>
+    <ins class="eas6a97888e2" data-zoneid="5733068"></ins>
+    <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+    
+    <!-- 添加新的广告代码 -->
+    <script async type="application/javascript" src="https://a.pemsrv.com/ad-provider.js"></script>
+    <ins class="eas6a97888e35" data-zoneid="5703970"></ins>
+    <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+</body>
+</html>

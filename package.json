@@ -5,7 +5,7 @@
     "main": "index.html",
     "scripts": {
         "start": "npm run dev",
-        "build": "mkdir -p dist && cp *.html dist/ && cp -r demo dist/ && cp minerdeep.txt dist/",
+        "build": "mkdir -p dist && cp *.html dist/ && cp -r demo dist/ && cp *.txt dist/ && cp -r dist/",
         "dev": "cross-env NODE_ENV=development webpack serve --config webpack/dev.config.js",
         "test": "",
         "format": "prettier \"**/*.{js,json,md}\" --write",
