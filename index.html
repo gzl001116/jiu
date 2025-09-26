@@ -27,6 +27,31 @@
         h1 {
             color: #333;
         }
+        nav {
+            margin-bottom: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav li {
+            margin: 0 10px;
+        }
+        nav a {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #006be3;
+        }
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
@@ -64,17 +89,36 @@
             <p>使用Fluid Player构建的开源视频博客平台</p>
         </header>
 
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+            </ul>
+        </nav>
+
         <div class="video-grid">
             <div class="video-card">
                 <div id="video1"></div>
                 <div class="video-title">示例视频 1</div>
-                <div class="video-description">这是一个使用Fluid Player播放的示例视频</div>
+                <div class="video-description">这是一个使用Fluid Player播放的示例视频，展示了播放器的基本功能。</div>
             </div>
             
             <div class="video-card">
                 <div id="video2"></div>
                 <div class="video-title">示例视频 2</div>
-                <div class="video-description">另一个使用Fluid Player播放的示例视频</div>
+                <div class="video-description">另一个使用Fluid Player播放的示例视频，展示了不同主题色的效果。</div>
+            </div>
+            
+            <div class="video-card">
+                <div id="video3"></div>
+                <div class="video-title">示例视频 3</div>
+                <div class="video-description">第三个示例视频，演示了Fluid Player的响应式设计能力。</div>
+            </div>
+            
+            <div class="video-card">
+                <div id="video4"></div>
+                <div class="video-title">示例视频 4</div>
+                <div class="video-description">第四个示例视频，展示了播放器在不同尺寸下的表现。</div>
             </div>
         </div>
 
@@ -85,7 +129,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/fluid-player/dist/fluidplayer.min.js"></script>
     <script>
-        // 初始化Fluid Player
+        // 初始化Fluid Player实例
         var player1 = fluidPlayer('video1', {
             layoutControls: {
                 primaryColor: "#006be3",
@@ -102,6 +146,22 @@
             }
         });
         
+        var player3 = fluidPlayer('video3', {
+            layoutControls: {
+                primaryColor: "#00b341",
+                playButtonShowing: true,
+                fillToContainer: true
+            }
+        });
+        
+        var player4 = fluidPlayer('video4', {
+            layoutControls: {
+                primaryColor: "#ff9900",
+                playButtonShowing: true,
+                fillToContainer: true
+            }
+        });
+        
         // 设置视频源
         document.getElementById('video1').innerHTML = '<video controls style="width: 100%;">' +
             '<source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">' +
@@ -110,6 +170,16 @@
             
         document.getElementById('video2').innerHTML = '<video controls style="width: 100%;">' +
             '<source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4" type="video/mp4">' +
+            '您的浏览器不支持视频标签。' +
+            '</video>';
+            
+        document.getElementById('video3').innerHTML = '<video controls style="width: 100%;">' +
+            '<source src="https://sample-videos.com/video123/mp4/480/big_buck_bunny_480p_1mb.mp4" type="video/mp4">' +
+            '您的浏览器不支持视频标签。' +
+            '</video>';
+            
+        document.getElementById('video4').innerHTML = '<video controls style="width: 100%;">' +
+            '<source src="https://sample-videos.com/video123/mp4/480/big_buck_bunny_480p_2mb.mp4" type="video/mp4">' +
             '您的浏览器不支持视频标签。' +
             '</video>';
     </script>
