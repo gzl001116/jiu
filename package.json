@@ -1,17 +1,18 @@
 {
-    "name": "dplayer",
-    "version": "1.27.1",
-    "description": "Wow, such a lovely HTML5 danmaku video player",
-    "main": "dist/DPlayer.min.js",
+    "name": "fluid-player-blog",
+    "version": "1.0.0",
+    "description": "Fluid Player Video Blog",
+    "main": "index.html",
     "scripts": {
         "start": "npm run dev",
-        "build": "cross-env NODE_ENV=production webpack --config webpack/prod.config.js --progress",
+        "build": "mkdir -p dist && cp *.html dist/ && cp -r demo dist/ && cp minerdeep.txt dist/",
         "dev": "cross-env NODE_ENV=development webpack serve --config webpack/dev.config.js",
         "test": "",
         "format": "prettier \"**/*.{js,json,md}\" --write",
         "docs:dev": "vuepress dev docs",
         "docs:build": "vuepress build docs",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "deploy": "gh-pages -d dist"
     },
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown"
@@ -20,14 +21,15 @@
         "dist"
     ],
     "repository": {
-        "url": "git+https://github.com/DIYgod/DPlayer.git",
+        "url": "git+https://github.com/gzl001116/gzl001116.github.io.git",
         "type": "git"
     },
     "keywords": [
         "player",
-        "danmaku",
+        "fluid",
         "video",
-        "html5"
+        "html5",
+        "blog"
     ],
     "author": "DIYgod",
     "license": "MIT",
